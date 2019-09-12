@@ -46,7 +46,6 @@ func Decrypt(s string, rails int) string {
 	railDir := 1 // 1 for forward, -1 for backward
 
 	for x := 0; x < slen; x++ {
-		fmt.Printf("x=%d  railptr=%d\n", x, railptr)
 		railArr[railptr] = append(railArr[railptr], x)
 
 		if railptr == 0 && railDir == -1 {
@@ -64,9 +63,7 @@ func Decrypt(s string, rails int) string {
 
 	ptr := 0
 	for x := 0; x < rails; x++ {
-		fmt.Println("rail #%d = %d\n", x, railArr[x])
 		for y := 0; y < len(railArr[x]); y++ {
-			//ret += string(railArr[x][y])
 			tmp[railArr[x][y]] = s[ptr]
 			ptr++
 
