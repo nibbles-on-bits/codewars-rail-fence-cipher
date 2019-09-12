@@ -2,28 +2,39 @@ package main
 
 import "testing"
 
+type TestCase struct {
+	unencrypted string
+	encrypted   string
+	railCount   int
+}
+
 func TestEncryptRail(t *testing.T) {
-	testCases := [][2]string{
-		{"WEAREDISCOVEREDFLEEATONCE", "WECRLTEERDSOEEFEAOCAIVDEN"},
+	testCases := []TestCase{
+		{"WEAREDISCOVEREDFLEEATONCE", "WECRLTEERDSOEEFEAOCAIVDEN", 3},
+		{"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "AIQYBHJPRXZCGKOSWDFLNTVEMU", 5},
 	}
 
-	for _, a := range testCases {
-		got := Encrypt(a[0])
-		if got != a[1] {
-			t.Errorf("EncryptRail(%v) = >>%v<<; want >>%v<<", a[0], got, a[1])
+	for _, tc := range testCases {
+		got := Encrypt(tc.unencrypted, tc.railCount)
+		want := tc.encrypted
+		if got != want {
+			t.Errorf("Encrypt(%v,%d) = >>%v<<; want >>%v<<", tc.unencrypted, tc.railCount, got, want)
 		}
 	}
 
 }
 
-func TestDecryptRail(t *testing.T) {
-	testCases := [][2]string{
-		{"WEAREDISCOVEREDFLEEATONCE", "WECRLTEERDSOEEFEAOCAIVDEN"},
+func TestDecrypt(t *testing.T) {
+	testCases := []TestCase{
+		{"WEAREDISCOVEREDFLEEATONCE", "WECRLTEERDSOEEFEAOCAIVDEN", 3},
+		{"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "AIQYBHJPRXZCGKOSWDFLNTVEMU", 5},
 	}
-	for _, a := range testCases {
-		got := DecryptRail(a[1])
-		if got != a[0] {
-			t.Errorf("DecryptRail(%v) = >>%v<<; want >>%v<<", a[1], got, a[0])
+
+	for _, tc := range testCases {
+		got := Decrypt(tc.encrypted, tc.railCount)
+		want := tc.unencrypted
+		if got != want {
+			t.Errorf("Decrypt(%v,%d) = >>%v<<; want >>%v<<", tc.encrypted, tc.railCount, got, want)
 		}
 	}
 
