@@ -3,9 +3,9 @@ codewars 3kyu kata : Rail Fence Cipher: Encoding and Decoding
 Create two functions to encode and then decode a string using the Rail Fence Cipher. This cipher is used to encode a string by placing each character successively in a diagonal along a set of "rails". First start off moving diagonally and down. When you reach the bottom, reverse direction and move diagonally and up until you reach the top rail. Continue until you reach the end of the string. Each "rail" is then read left to right to derive the encoded string. You can optionally include or dis-include punctuation.
 
 For example, the string "WEAREDISCOVEREDFLEEATONCE" could be represented in a three rail system as follows:
-W       E       C       R       L       T       E
-  E   R   D   S   O   E   E   F   E   A   O   C  
-    A       I       V       D       E       N  
+`W       E       C       R       L       T       E`
+`  E   R   D   S   O   E   E   F   E   A   O   C  `
+`    A       I       V       D       E       N    `
     
 The encoded string would be:
 
